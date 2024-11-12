@@ -7,6 +7,8 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const clienteRouter = require('./routes/clienteRoutes');
+
 require('dotenv').config({ path: './stack/.env' });
 
 /**
@@ -21,6 +23,12 @@ const port = process.env.SERVICE_PORT;
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/**
+ * Delegamos todas las rutas que comienzan por clientes ...
+ * al enrutador correspondiente
+ */
+app.use('/clientes', clienteRouter);
 
 
 app.get('/', (req, res) => {

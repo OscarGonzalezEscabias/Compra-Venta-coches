@@ -1,0 +1,16 @@
+extends ../templates/layout
+
+block content 
+    h3 Añadir un nuevo cliente
+        div 
+            form(action="/clientes/add", method="post") 
+                label(for="nombre") Nombre:
+                input(type="text", name="nombre")
+                br
+                label(for="telefono") Telefono:
+                input(type="text", name="telefono")  
+                br
+                label(for="direccion") Direccion:
+                input(type="text", name="direccion")                  
+                br                
+                input(type="submit", value="Enviar")
