@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Compra_Vehiculo;
 
 -- Tabla Cliente
 CREATE TABLE Cliente (
-    ID_Cliente INT AUTO_INCREMENT PRIMARY KEY, 
+    ID_Cliente INT INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(100),
     Telefono VARCHAR(15),
     Direccion VARCHAR(255)
@@ -20,7 +20,7 @@ CREATE TABLE Cliente (
 
 -- Tabla Vehiculo
 CREATE TABLE Vehiculo (
-    ID_Vehiculo INT AUTO_INCREMENT PRIMARY KEY, 
+    ID_Vehiculo INT AUTO_INCREMENT PRIMARY KEY,
     Marca VARCHAR(50),
     Modelo VARCHAR(50),
     Año INT,
