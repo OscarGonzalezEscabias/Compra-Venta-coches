@@ -1,0 +1,22 @@
+extends ../templates/layout
+
+block content 
+    h3 Añadir un nuevo vehiculo
+        div 
+            form(action="/vehiculos/add", method="post") 
+                label(for="marca") Marca:
+                input(type="text", name="marca")
+                br
+                label(for="modelo") Modelo:
+                input(type="text", name="modelo")  
+                br
+                label(for="año") Año:
+                input(type="number", name="año") 
+                br
+                label(for="precio") Precio:
+                input(type="float", name="precio")  
+                br
+                label(for="combustible") Combustible:
+                input(type="text", name="combustible")                  
+                br                
+                input(type="submit", value="Enviar")

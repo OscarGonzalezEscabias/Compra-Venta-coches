@@ -8,4 +8,8 @@ router.get('/add', clienteController.clienteAddFormulario);
 
 router.post('/add', clienteController.clienteAdd);
 
+router.get('/edit/:id', clienteController.clienteEditFormulario);
+
+router.post('/edit/:id', clienteController.clienteEdit);
+
 module.exports=router;

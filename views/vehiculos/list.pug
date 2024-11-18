@@ -1,0 +1,32 @@
+extends ../templates/layout
+
+block content
+
+        div 
+            h3 Listado de vehiculos
+            table(border=1)
+                thead 
+                    tr
+                        th id
+                        th marca 
+                        th modelo
+                        th año
+                        th precio
+                        th combustible
+                        th borrar 
+                        th editar
+                tbody 
+                    each vehiculo in vehiculos
+                        tr 
+                            td=vehiculo.ID_Vehiculo
+                            td=vehiculo.Marca                       
+                            td=vehiculo.Modelo
+                            td=vehiculo.Año
+                            td=vehiculo.Precio
+                            td=vehiculo.Combustible
+                            td
+                                a(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`) borrar 
+                            td 
+                                a(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`) editar 
+            p 
+                a(href="/vehiculos/add") Añadir un vehiculo nuevo

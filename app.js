@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const clienteRouter = require('./routes/clienteRoutes');
+const vehiculoRouter = require('./routes/vehiculosRoutes');
 
 require('dotenv').config({ path: './stack/.env' });
 
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  * al enrutador correspondiente
  */
 app.use('/clientes', clienteRouter);
-
+app.use('/vehiculos',vehiculoRouter);
 
 app.get('/', (req, res) => {
     res.render('index')
