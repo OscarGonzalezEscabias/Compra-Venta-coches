@@ -7,6 +7,9 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const comprasRoutes = require('./routes/comprasRoutes');
+const ventasRoutes = require('./routes/ventasRoutes');
+
 require('dotenv').config({ path: './stack/.env' });
 
 /**
@@ -22,6 +25,9 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.use('/compras', comprasRoutes);
+app.use('/ventas', ventasRoutes);
 
 app.get('/', (req, res) => {
     res.render('index')

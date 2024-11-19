@@ -1,0 +1,26 @@
+extends ../templates/layout
+
+block content
+
+        div 
+            h3 Listado de compras
+            table(border=1)
+                thead 
+                    tr
+                        th ID
+                        th Fecha_Compra 
+                        th Precio_Compra
+                        th Borrar 
+                        th Editar
+                tbody 
+                    each Compra in compras
+                        tr 
+                            td=Compra.ID_Compra
+                            td=Compra.Fecha_Compra                        
+                            td=Compra.Precio_Compra
+                            td 
+                                a(href=`/compras/del/${Compra.ID_Compra}`) borrar 
+                            td 
+                                a(href=`/compras/edit/${Compra.ID_Compra}`) editar 
+            p 
+                a(href="/compras/add") Añadir una nueva compra

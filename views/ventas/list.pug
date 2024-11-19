@@ -1,0 +1,26 @@
+extends ../templates/layout
+
+block content
+
+        div 
+            h3 Listado de ventas
+            table(border=1)
+                thead 
+                    tr
+                        th ID
+                        th Fecha_Venta 
+                        th Total
+                        th Borrar 
+                        th Editar
+                tbody 
+                    each Venta in ventas
+                        tr 
+                            td=Venta.ID_Venta
+                            td=Venta.Fecha_Venta                        
+                            td=Venta.Total
+                            td 
+                                a(href=`/ventas/del/${Venta.ID_Venta}`) borrar 
+                            td 
+                                a(href=`/ventas/edit/${Venta.ID_Venta}`) editar 
+            p 
+                a(href="/ventas/add") Añadir una nueva venta

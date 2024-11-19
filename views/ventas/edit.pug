@@ -1,0 +1,14 @@
+extends ../templates/layout
+
+block content 
+    h3 Añadir una nueva compra
+        div 
+            form(action="/ventas/edit", method="post") 
+                label(for="Fecha_Venta") Fecha de venta:
+                input(type="text", name="Fecha_Venta", value=`${Venta.Fecha_Venta}`)
+                br
+                label(for="Total") Total de la venta:
+                input(type="text", name="Total", value=`${Venta.Total}`)                    
+                br
+                input(type="hidden", name="id", value=`${Venta.ID_Venta}`)                
+                input(type="submit", value="Enviar")
