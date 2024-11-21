@@ -31,4 +31,8 @@ Creamos la base de datos compraventa a partir del diagrama:
 * **Vehiculo**: Almacena los datos de los vehículos.
 * **Venta**: Registra las ventas realizadas por los clientes.
 * **Compra**: Registra las compras realizadas por los clientes.
+<<<<<<< HEAD
 * **Venta_Vehiculo y Compra_Vehiculo**: Son tablas intermedias para establecer relaciones de "muchos a muchos" entre las tablas Venta y Vehiculo, y entre Compra y Vehiculo, respectivamente.
+=======
+* **Venta_Vehiculo y Compra_Vehiculo**: Son tablas intermedias para establecer relaciones de "muchos a muchos" entre las tablas Venta y Vehiculo, y entre Compra y Vehiculo, respectivamente.
+>>>>>>> 6b29e1a952170ea53fcc54c2b6879f94ad43138a
