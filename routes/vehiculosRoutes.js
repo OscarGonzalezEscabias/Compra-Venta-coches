@@ -16,4 +16,8 @@ router.get('/del/:id' , vehiculoController.vehiculoDelFormulario);
 
 router.post('/del/:id' , vehiculoController.vehiculoDel);
 
+router.get('/marcas', vehiculoController.vehiculosMarcas);
+
+router.post('/filtrar', vehiculoController.filtrarVehiculosPorMarca);
+
 module.exports=router;

@@ -1,0 +1,40 @@
+extends ../templates/layout
+
+block content
+    div 
+        form(action="/vehiculos/filtrar" method="POST")
+            label(for="marca") Selecciona una marca:
+            select(name="marca" id="marca")
+                option(value="") -- Selecciona una marca --
+                each marca in marcas
+                    option(value=marca)= marca
+            button(type="submit") Filtrar
+
+    if vehiculos && vehiculos.length > 0
+        div 
+            table(border=1)
+                thead 
+                    tr
+                        th ID
+                        th Marca
+                        th Modelo
+                        th Año
+                        th Precio
+                        th Combustible
+                        th Borrar
+                        th Editar
+                tbody 
+                    each vehiculo in vehiculos
+                        tr 
+                            td= vehiculo.ID_Vehiculo
+                            td= vehiculo.Marca                       
+                            td= vehiculo.Modelo
+                            td= vehiculo.Anno
+                            td= vehiculo.Precio
+                            td= vehiculo.Combustible
+                            td
+                                a.edit(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`) Borrar 
+                            td 
+                                a.del(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`) Editar
+    else
+        p No hay vehículos para la marca seleccionada.

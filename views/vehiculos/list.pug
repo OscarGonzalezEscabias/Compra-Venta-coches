@@ -3,17 +3,20 @@ extends ../templates/layout
 block content
 
         div 
+            h3 Listado de todos los Vehiculos
+            a(href="/vehiculos/add") Añadir un vehiculo nuevo
+            a(href="/vehiculos/marcas") Filtrar por marcas
             table(border=1)
                 thead 
                     tr
-                        th id
-                        th marca 
-                        th modelo
-                        th año
-                        th precio
-                        th combustible
-                        th borrar 
-                        th editar
+                        th ID
+                        th Marca 
+                        th Modelo
+                        th Año
+                        th Precio
+                        th Combustible
+                        th Borrar 
+                        th Editar
                 tbody 
                     each vehiculo in vehiculos
                         tr 
@@ -24,8 +27,7 @@ block content
                             td=vehiculo.Precio
                             td=vehiculo.Combustible
                             td
-                                a(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`) borrar 
+                                a.del(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`) borrar 
                             td 
-                                a(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`) editar 
-            p 
-                a(href="/vehiculos/add") Añadir un vehiculo nuevo
+                                a.edit(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`) editar 
+                

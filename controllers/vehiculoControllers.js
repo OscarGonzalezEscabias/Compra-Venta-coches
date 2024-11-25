@@ -102,3 +102,38 @@ exports.vehiculoDel = (req, res) => {
     );
   }
 };
+
+// Cargar la vista inicial con todas las marcas
+exports.vehiculosMarcas = (req, res) => {
+  db.query('SELECT DISTINCT Marca FROM Vehiculo', (error, marcas) => {
+      if (error) {
+          res.send('Error obteniendo las marcas');
+      } else {
+          res.render('vehiculos/marcas', { marcas: marcas.map(m => m.Marca), vehiculos: [] });
+      }
+  });
+};
+
+// Filtrar los vehículos por marca
+exports.filtrarVehiculosPorMarca = (req, res) => {
+  const { marca } = req.body;
+
+  db.query('SELECT DISTINCT Marca FROM Vehiculo', (error, marcas) => {
+      if (error) {
+          res.send('Error obteniendo las marcas');
+      } else {
+          const marcasUnicas = marcas.map(m => m.Marca);
+          if (!marca || !marcasUnicas.includes(marca)) {
+              res.render('vehiculos/marcas', { marcas: marcasUnicas, vehiculos: [] });
+          } else {
+              db.query('SELECT * FROM Vehiculo WHERE Marca = ?', [marca], (error, vehiculos) => {
+                  if (error) {
+                      res.send('Error filtrando los vehículos');
+                  } else {
+                      res.render('vehiculos/marcas', { marcas: marcasUnicas, vehiculos });
+                  }
+              });
+          }
+      }
+  });
+};

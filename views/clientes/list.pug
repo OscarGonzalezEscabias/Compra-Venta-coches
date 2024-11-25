@@ -4,15 +4,16 @@ block content
 
         div 
             h3 Listado de clientes
+            a(href="/clientes/add") Añadir un cliente nuevo
             table(border=1)
                 thead 
                     tr
-                        th id
-                        th nombre 
-                        th telefono
-                        th direccion
-                        th borrar 
-                        th editar
+                        th ID
+                        th Nombre 
+                        th Telefono
+                        th Direccion
+                        th Borrar 
+                        th Editar
                 tbody 
                     each cliente in clientes
                         tr 
@@ -21,8 +22,6 @@ block content
                             td=cliente.Telefono
                             td=cliente.Direccion
                             td 
-                                a(href=`/clientes/del/${cliente.ID_Cliente}`) borrar 
+                                a.del(href=`/clientes/del/${cliente.ID_Cliente}`) borrar 
                             td 
-                                a(href=`/clientes/edit/${cliente.ID_Cliente}`) editar 
-            p 
-                a(href="/clientes/add") Añadir un cliente nuevo
+                                a.edit(href=`/clientes/edit/${cliente.ID_Cliente}`) editar 
