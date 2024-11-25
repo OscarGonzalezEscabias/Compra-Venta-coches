@@ -1,0 +1,23 @@
+extends ../templates/layout
+
+block content 
+    h3 Editar vehiculo
+        div 
+            form(method="post") 
+                label(for="marca") Marca:
+                input(type="text", name="marca", value=`${vehiculo.Marca}`)
+                br
+                label(for="modelo") Modelo:
+                input(type="text", name="modelo", value=`${vehiculo.Modelo}`)  
+                br
+                label(for="anno") Año:
+                input(type="number", name="anno", value=`${vehiculo.Anno}`)                  
+                br 
+                label(for="precio") Precio:
+                input(type="float", name="precio", value=`${vehiculo.Precio}`)                                  
+                br
+                label(for="combustible") Combustible:
+                input(type="text", name="combustible", value=`${vehiculo.Combustible}`)    
+                br
+                input(type="hidden", name="id", value=`${vehiculo.ID_Vehiculo}`)
+                input(type="submit", value="Enviar")

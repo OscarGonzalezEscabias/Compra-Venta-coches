@@ -12,4 +12,8 @@ router.get('/edit/:id', clienteController.clienteEditFormulario);
 
 router.post('/edit/:id', clienteController.clienteEdit);
 
+router.get('/del/:id' , clienteController.clienteDelFormulario);
+
+router.post('/del/:id' , clienteController.clienteDel);
+
 module.exports=router;

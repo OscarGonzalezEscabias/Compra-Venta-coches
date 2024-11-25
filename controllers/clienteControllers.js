@@ -38,7 +38,7 @@ exports.clienteEditFormulario = (req, res) => {
         if (error) res.send('ERROR al INTENTAR ACTUALIZAR EL cliente')
         else {
           if (respuesta.length > 0) {
-            res.render('clientes/edit', { clientes: respuesta[0] })
+            res.render('clientes/edit', { cliente: respuesta[0] })
           } else {
             res.send('ERROR al INTENTAR ACTUALIZAR EL cliente, NO EXISTE')
           }
@@ -47,26 +47,24 @@ exports.clienteEditFormulario = (req, res) => {
 };
 
 exports.clienteEdit = (req, res) => {
+  const { id, nombre, telefono, direccion } = req.body; 
+  const paramId = req.params['id']; 
 
-  const { ID_Cliente, nombre,telefono, direccion } = req.body;
-  const paramId = req.params['ID_Cliente'];
-
-  if (isNaN(ID_Cliente) || isNaN(paramId) || ID_Cliente !== paramId) {
-    res.send('ERROR ACTUALIZANDO')
-  } else {
-    db.query(
-      'UPDATE `cliente` SET `nombre` = ?,`telefono` = ?, `direccion` = ?' +
-      ' WHERE `ID_Cliente` = ?',
-      [nombre,telefono, direccion, ID_Cliente],
-      (error, respuesta) => {
-        if (error) {
-          res.send('ERROR ACTUALIZANDO CLIENTE' + error)
-          console.log(error)
-        }
-        else res.redirect('/clientes')
-      }
-    );
+  if (isNaN(id) || isNaN(paramId) || parseInt(id) !== parseInt(paramId)) {
+    return res.send('ERROR: Datos inválidos.');
   }
+
+  db.query(
+    'UPDATE Cliente SET Nombre = ?, Telefono = ?, Direccion = ? WHERE ID_Cliente = ?',
+    [nombre, telefono, direccion, id],
+    (error, respuesta) => {
+      if (error) {
+        console.error('Error al actualizar cliente:', error);
+        return res.send('Error actualizando cliente.');
+      }
+      res.redirect('/clientes');
+    }
+  );
 };
 
 exports.clienteDelFormulario = (req, res) => {
@@ -74,17 +72,40 @@ exports.clienteDelFormulario = (req, res) => {
   if (isNaN(id)) res.send('PARAMETROS INCORRECTOS')
   else
     db.query(
-      'SELECT * FROM cliente WHERE ID_Cliente=?',
+      'SELECT * FROM Cliente WHERE ID_Cliente=?',
       id,
       (error, respuesta) => {
-        if (error) res.send('ERROR al INTENTAR BORRAR EL CLIENTE')
+        if (error) res.send('ERROR al INTENTAR BORRAR EL cliente')
         else {
           if (respuesta.length > 0) {
-            res.render('clientes/del', { clientes: respuesta[0] })
+            res.render('clientes/del', { cliente: respuesta[0] })
           } else {
-            res.send('ERROR al INTENTAR BORRAR EL CLIENTE, NO EXISTE')
+            res.send('ERROR al INTENTAR BORRAR EL cliente, NO EXISTE')
           }
         }
       });
 
 };
+
+exports.clienteDel = (req, res) => {
+
+  const { id } = req.body;
+  const paramId = req.params['id'];
+
+  if (isNaN(id) || isNaN(paramId) || id !== paramId) {
+    res.send('ERROR BORRANDO')
+  } else {
+    db.query(
+      'DELETE FROM Cliente WHERE ID_Cliente=?',
+      id,
+      (error, respuesta) => {
+        if (error) res.send('ERROR BORRANDO cliente' + req.body)
+        else res.redirect('/clientes')
+      }
+    );
+  }
+};
+
+
+
+

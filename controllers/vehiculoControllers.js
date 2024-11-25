@@ -10,18 +10,95 @@ exports.vehiculos = (req, res) => {
     );
   };
 
-  exports.vehiculoAdd = (req, res) => {
-    const { marca,modelo,año,precio,combustible } = req.body;
+exports.vehiculoAdd = (req, res) => {
+  const { marca,modelo,año,precio,combustible } = req.body;
+  db.query(
+    'INSERT INTO Vehiculo (marca,modelo,anno,precio,combustible) VALUES (?,?,?,?,?)',
+    [marca,modelo,año,precio,combustible],
+    (error, respuesta) => {
+      if (error) res.send('ERROR INSERTANDO vehiculo' + req.body)
+      else res.redirect('/vehiculos')
+    }
+  );
+};
+
+exports.vehiculoAddFormulario = (req, res) => {
+  res.render('vehiculos/add');
+};
+exports.vehiculoEditFormulario = (req, res) => {
+  const { id } = req.params;
+  if (isNaN(id)) res.send('PARAMETROS INCORRECTOS')
+  else
     db.query(
-      'INSERT INTO vehiculo (marca,modelo,año,precio,combustible) VALUES (?,?,?,?,?)',
-      [marca,modelo,año,precio,combustible],
+      'SELECT * FROM Vehiculo WHERE ID_Vehiculo=?',
+      id,
       (error, respuesta) => {
-        if (error) res.send('ERROR INSERTANDO vehiculo' + req.body)
+        if (error) res.send('ERROR al INTENTAR ACTUALIZAR EL Vehiculo')
+        else {
+          if (respuesta.length > 0) {
+            res.render('vehiculos/edit', { vehiculo : respuesta[0] })
+          } else {
+            res.send('ERROR al INTENTAR ACTUALIZAR EL Vehiculo, NO EXISTE')
+          }
+        }
+      });
+};
+
+exports.vehiculoEdit = (req, res) => {
+  const { id, marca , modelo , anno , precio , combustible } = req.body; 
+  const paramId = req.params['id']; 
+
+  if (isNaN(id) || isNaN(paramId) || parseInt(id) !== parseInt(paramId)) {
+    return res.send('ERROR: Datos inválidos.');
+  }
+
+  db.query(
+    'UPDATE Vehiculo SET Marca = ?, Modelo = ?, Anno = ? , Precio = ? , Combustible = ? WHERE ID_Vehiculo = ?',
+    [marca , modelo , anno , precio , combustible, id],
+    (error, respuesta) => {
+      if (error) {
+        console.error('Error al actualizar vehiculo:', error);
+        return res.send('Error actualizando vehiculo.');
+      }
+      res.redirect('/vehiculos');
+    }
+  );
+};
+exports.vehiculoDelFormulario = (req, res) => {
+  const { id } = req.params;
+  if (isNaN(id)) res.send('PARAMETROS INCORRECTOS')
+  else
+    db.query(
+      'SELECT * FROM Vehiculo WHERE ID_Vehiculo=?',
+      id,
+      (error, respuesta) => {
+        if (error) res.send('ERROR al INTENTAR BORRAR EL Vehiculo')
+        else {
+          if (respuesta.length > 0) {
+            res.render('vehiculos/del', { vehiculo : respuesta[0] })
+          } else {
+            res.send('ERROR al INTENTAR BORRAR EL Vehiculo, NO EXISTE')
+          }
+        }
+      });
+
+};
+
+exports.vehiculoDel = (req, res) => {
+
+  const { id } = req.body;
+  const paramId = req.params['id'];
+
+  if (isNaN(id) || isNaN(paramId) || id !== paramId) {
+    res.send('ERROR BORRANDO')
+  } else {
+    db.query(
+      'DELETE FROM Vehiculo WHERE ID_Vehiculo=?',
+      id,
+      (error, respuesta) => {
+        if (error) res.send('ERROR BORRANDO Vehiculo' + req.body)
         else res.redirect('/vehiculos')
       }
     );
-  };
-  
-  exports.vehiculoAddFormulario = (req, res) => {
-    res.render('vehiculos/add');
-  };
+  }
+};

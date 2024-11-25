@@ -23,7 +23,7 @@ CREATE TABLE Vehiculo (
     ID_Vehiculo INT AUTO_INCREMENT PRIMARY KEY, 
     Marca VARCHAR(50),
     Modelo VARCHAR(50),
-    Año INT,
+    Anno INT,
     Precio FLOAT,
     Combustible VARCHAR(20)
 );
@@ -82,7 +82,7 @@ INSERT INTO Cliente (ID_Cliente, Nombre, Telefono, Direccion) VALUES
 
 
 -- Añade datos a la tabla vehiculo
-INSERT INTO Vehiculo (ID_Vehiculo, Marca, Modelo, Año, Precio, Combustible) VALUES
+INSERT INTO Vehiculo (ID_Vehiculo, Marca, Modelo, Anno, Precio, Combustible) VALUES
 (1, 'Chevrolet', 'Sedan', 2004, 40679.89, 'Gasolina'),
 (2, 'Toyota', 'Hatchback', 2005, 30269.74, 'Eléctrico'),
 (3, 'Chevrolet', 'Coupe', 2023, 18915.95, 'Diesel'),

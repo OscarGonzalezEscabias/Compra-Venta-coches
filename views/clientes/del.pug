@@ -1,0 +1,14 @@
+extends ../templates/layout
+
+block content
+    h3 Borrar cliente
+        div 
+            form(method="post") 
+                br
+                p Nombre: #{cliente.Nombre}
+                p Telefono: #{cliente.Telefono}
+                p Direccion: #{cliente.Direccion}                
+                br                
+                input(type="hidden", name="id", value=`${cliente.ID_Cliente}`)
+                input(type="submit", value="Enviar")
+

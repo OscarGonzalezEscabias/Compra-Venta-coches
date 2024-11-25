@@ -1,0 +1,16 @@
+extends ../templates/layout
+
+block content
+    h3 Borrar vehiculo
+        div 
+            form(method="post") 
+                br
+                p Marca : #{vehiculo.Marca}  
+                p Modelo : #{vehiculo.Modelo}
+                p Año : #{vehiculo.Anno}
+                p Precio : #{vehiculo.Precio}
+                p Combustible : #{vehiculo.Combustible}               
+                br        
+                p ¿Deseas borrar este vehiculo?        
+                input(type="hidden", name="id", value=`${vehiculo.ID_Vehiculo}`)
+                input(type="submit", value="Borrar")
