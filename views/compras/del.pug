@@ -1,0 +1,14 @@
+extends ../templates/layout
+
+block content 
+    h3 Eliminar una compra
+        div 
+            form(action="/compras/del", method="post") 
+                label(for="Fecha_Compra") Fecha de compra:
+                input(type="text", name="Fecha_Compra", disabled)
+                br
+                label(for="Precio_Compra") Precio de la compra:
+                input(type="text", name="Precio_Compra", disabled)                    
+                br
+                input(type="hidden", name="id", value=`${Compra.ID_Compra}`)                  
+                input(type="submit", value="Borrar")

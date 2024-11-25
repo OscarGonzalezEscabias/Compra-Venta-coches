@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS Compra;
 
 -- Tabla Cliente
 CREATE TABLE Cliente (
-    ID_Cliente INT INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(100),
     Telefono VARCHAR(15),
     Direccion VARCHAR(255)
