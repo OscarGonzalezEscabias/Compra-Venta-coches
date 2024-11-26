@@ -16,4 +16,8 @@ router.get('/del/:id', ventasController.ventasDelFormulario);
 
 router.post('/del/:id', ventasController.ventasDel);
 
+router.get('/annos', ventasController.ventasPorAño);
+
+router.post('/filtrar', ventasController.filtrarVentasPorAño);
+
 module.exports=router;

@@ -4,6 +4,8 @@ block content
 
         div 
             h3 Listado de compras
+            a(href="/compras/add") Añadir una nueva compra
+            a(href="/compras/annos") Ver compras por año
             table(border=1)
                 thead 
                     tr
@@ -22,5 +24,3 @@ block content
                                 a(href=`/compras/del/${Compra.ID_Compra}`) borrar 
                             td 
                                 a(href=`/compras/edit/${Compra.ID_Compra}`) editar 
-            p 
-                a(href="/compras/add") Añadir una nueva compra

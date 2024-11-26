@@ -105,3 +105,36 @@ exports.comprasDel = (req, res) => {
     );
   }
 };
+
+exports.comprasPorAño = (req, res) => {
+  db.query('SELECT DISTINCT YEAR(Fecha_Compra) AS anno FROM Compra ORDER BY anno', (error, annos) => {
+      if (error) {
+          res.send('Error obteniendo los años');
+      } else {
+          res.render('compras/annos', { annos: annos.map(a => a.anno), compras: [] });
+      }
+  });
+};
+
+exports.filtrarComprasPorAño = (req, res) => {
+  const { anno } = req.body;
+
+  db.query('SELECT DISTINCT YEAR(Fecha_Compra) AS anno FROM Compra ORDER BY anno', (error, annos) => {
+      if (error) {
+          res.send('Error obteniendo los años');
+      } else {
+          const annosUnicos = annos.map(a => a.anno);
+          if (!anno || !annosUnicos.includes(Number(anno))) {
+              res.render('compras/annos', { annos: annosUnicos, compras: [] });
+          } else {
+              db.query('SELECT * FROM Compra WHERE YEAR(Fecha_Compra) = ?', [anno], (error, compras) => {
+                  if (error) {
+                      res.send('Error filtrando las compras');
+                  } else {
+                      res.render('compras/annos', { annos: annosUnicos, compras });
+                  }
+              });
+          }
+      }
+  });
+};

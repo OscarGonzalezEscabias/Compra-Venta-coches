@@ -1,0 +1,28 @@
+extends ../templates/layout
+
+block content
+    div 
+        form(action="/compras/filtrar" method="post")
+            label(for="anno") Selecciona un año:
+            select(name="anno" id="anno")
+                option(value="") -- Selecciona un año --
+                each anno in annos
+                    option(value=anno)= anno
+            button(type="submit") Filtrar
+
+    if compras && compras.length > 0
+        div 
+            table(border=1)
+                thead 
+                    tr
+                        th ID_Compra
+                        th Fecha_Compra
+                        th Precio_Compra
+                tbody 
+                    each compra in compras
+                        tr 
+                            td= compra.ID_Compra
+                            td= compra.Fecha_Compra                       
+                            td= compra.Precio_Compra
+    else
+        p No hay compras para el año seleccionado.

@@ -1,0 +1,28 @@
+extends ../templates/layout
+
+block content
+    div 
+        form(action="/ventas/filtrar" method="post")
+            label(for="anno") Selecciona un año:
+            select(name="anno" id="anno")
+                option(value="") -- Selecciona un año --
+                each anno in annos
+                    option(value=anno)= anno
+            button(type="submit") Filtrar
+
+    if ventas && ventas.length > 0
+        div 
+            table(border=1)
+                thead 
+                    tr
+                        th ID_Venta
+                        th Fecha_Venta
+                        th Total
+                tbody 
+                    each venta in ventas
+                        tr 
+                            td= venta.ID_Venta
+                            td= venta.Fecha_Venta                       
+                            td= venta.Total
+    else
+        p No hay ventas para el año seleccionado.

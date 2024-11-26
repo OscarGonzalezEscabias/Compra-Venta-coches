@@ -4,6 +4,8 @@ block content
 
         div 
             h3 Listado de ventas
+            a(href="/ventas/add") Añadir una nueva venta
+            a(href="/ventas/annos") Ver ventas por año
             table(border=1)
                 thead 
                     tr
@@ -22,5 +24,3 @@ block content
                                 a(href=`/ventas/del/${Venta.ID_Venta}`) borrar 
                             td 
                                 a(href=`/ventas/edit/${Venta.ID_Venta}`) editar 
-            p 
-                a(href="/ventas/add") Añadir una nueva venta
